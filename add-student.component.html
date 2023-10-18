@@ -1,0 +1,38 @@
+<div *ngIf="true; then callfunc"></div>
+<ng-template #callfunc>
+    {{openAdd(content)}}
+</ng-template>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Add Student</h4>  
+		<button type="button" class="btn-close" aria-label="Close" (click)="allStudent(); modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<form [formGroup] = "addStudent" (ngSubmit)="addNewStudent(addStudent.value)">
+			<div class="mb-3">
+                <input type="text" class="form-control " placeholder="Enter name" formControlName="name"><br>
+                <input type="email" class="form-control" placeholder="Enter email" formControlName="email"><br>
+                <input type="number" class="form-control" placeholder="Enter age" formControlName="age"><br>
+                <input   type="radio"  formControlName="isMale"
+                     value="true" (click)="isMaleSelected=true"> Male &nbsp;
+                <input  type="radio"  formControlName="isMale" 
+                    value="false"(click)="isFemaleSelected=true"> Female <br><br>
+                <input type="number" class="form-control" placeholder="Enter rollNo" formControlName="rollNo"><br>
+				<!-- <label for="dateOfBirth">Date of birth</label> -->
+				<input type="date" class="form-control " formControlName="date">
+					<!-- <input
+                        type="date"
+						id="dateOfBirth"
+						class="form-control "
+						
+						formControlName = "date"
+						ngbDatepicker
+						#dp="ngbDatepicker"
+					/> -->
+                <hr>
+                <button style="float: right;" class="btn btn-outline-dark" (click)="allStudent(); modal.close('Save click') ">Save</button>
+                
+			</div>
+		</form>
+	</div>
+</ng-template>
